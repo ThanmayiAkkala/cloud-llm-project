@@ -45,13 +45,13 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat
 object LLMEncoderDriver {
   def main(args: Array[String]): Unit = {
     if (args.length != 2) {
-      System.err.println("Usage: Word2VecDriver <input path> <output path>")
+      System.err.println("Usage: LLMEncoderDriver <input path> <output path>")
       System.exit(-1)
     }
 
     // Set up Hadoop configuration and create a new job
     val conf = new Configuration()
-    val job = Job.getInstance(conf, "Word2Vec Token Embedding")
+    val job = Job.getInstance(conf, "LLM Tokenizer Job")
     job.setJarByClass(LLMEncoderDriver.getClass)
 
     // Set input and output paths

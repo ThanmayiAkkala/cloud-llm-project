@@ -18,39 +18,32 @@
 //}
 package com.thanu.llm
 
-import com.typesafe.config.ConfigFactory
 import org.apache.hadoop.io.{LongWritable, Text}
 import org.apache.hadoop.mapreduce.Mapper
-import org.deeplearning4j.models.word2vec.Word2Vec
-import scala.collection.JavaConverters._
-import jtokkit.tokenizer.BPETokenizer // Assume this is the right package for BPE
+import com.knuddels.jtokkit.api.EncodingRegistry
+import com.knuddels.jtokkit.api.Encoding
+import com.knuddels.jtokkit.api.EncodingType
+import com.knuddels.jtokkit.Encodings
+
 
 class TokenCountMapper extends Mapper[LongWritable, Text, Text, Text] {
 
-  // Load the configuration
-  val config = ConfigFactory.load()
 
-  // Load Word2Vec model from the path specified in the config file
-  val word2VecModelPath = config.getString("word2vec.model.path")
-  val word2Vec: Word2Vec = Word2Vec.load(new java.io.File(word2VecModelPath))
-
-  // Initialize BPE Tokenizer with paths from config
-  val bpeCodesPath = config.getString("bpe.codes.file.path")
-  val bpeVocabPath = config.getString("bpe.vocab.file.path")
-  val bpeTokenizer = new BPETokenizer(bpeCodesPath, bpeVocabPath)
+  val registry: EncodingRegistry = Encodings.newDefaultEncodingRegistry
+  val enc: Encoding = registry.getEncoding(EncodingType.CL100K_BASE)
 
   override def map(key: LongWritable, value: Text, context: Mapper[LongWritable, Text, Text, Text]#Context): Unit = {
-    // Tokenize the text using BPE
-    val tokens = bpeTokenizer.tokenize(value.toString).asScala.filter(_.nonEmpty)
+    // Convert the input line to a string
+    val sentence = value.toString
 
-    // For each token, get the embedding and write it to context
-    tokens.foreach { token =>
-      if (word2Vec.hasWord(token)) {
-        val embedding = word2Vec.getWordVector(token)
-        val embeddingString = embedding.mkString(",")
-        context.write(new Text(token), new Text(embeddingString))
-      }
-    }
+    // Tokenize the sentence using JTokkit
+    val encodedTokens = enc.encode(sentence)
+
+    // Convert tokens to a comma-separated string for output
+    val tokenString = (0 until encodedTokens.size()).map(i => encodedTokens.get(i)).mkString(",")
+
+    // Write the tokenized output to the context
+    context.write(new Text("Tokens"), new Text(tokenString))
   }
 }
 

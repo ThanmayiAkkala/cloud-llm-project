@@ -20,19 +20,19 @@ package com.thanu.llm
 
 import org.apache.hadoop.io.{Text}
 import org.apache.hadoop.mapreduce.Reducer
-import scala.jdk.CollectionConverters._
+import scala.collection.JavaConverters._
 
-// A Reducer class that aggregates token embeddings and outputs them
 class TokenCountReducer extends Reducer[Text, Text, Text, Text] {
+
   override def reduce(key: Text, values: java.lang.Iterable[Text], context: Reducer[Text, Text, Text, Text]#Context): Unit = {
-    // Collect all embeddings for this token
-    val embeddings = values.asScala.map(_.toString.split(",").map(_.toDouble))
+    // Collect all tokenized data from the Mapper
+    val tokenLists = values.asScala.map(_.toString)
 
-    // Optionally, you can average the embeddings if the same token appears multiple times
-    val avgEmbedding = embeddings.reduce((a, b) => a.zip(b).map { case (x, y) => (x + y) / 2 })
+    // Join all tokenized results into a single string
+    val aggregatedTokens = tokenLists.mkString(",")
 
-    // Convert the averaged embedding back to a string and output it
-    val embeddingString = avgEmbedding.mkString(",")
-    context.write(key, new Text(embeddingString))
+    // Output the combined tokens for each key
+    context.write(key, new Text(aggregatedTokens))
   }
 }
+
