@@ -1,0 +1,78 @@
+# CS441 Homework1
+
+**Name**: Thanmayi Akkala  
+**Email**: takkal2@uic.edu
+
+## Overview
+The LLM Encoder Project is designed to process large-scale text corpora using a parallel distributed system architecture. This project utilizes Hadoop's MapReduce framework to handle data tokenization, word frequency calculation, and Word2Vec-based token embedding generation. The primary goal of the system is to generate token embeddings that capture the semantic meaning of words in the corpus and identify tokens that are semantically similar using cosine similarity.
+
+The system processes text data efficiently by leveraging the MapReduce paradigm for distributed data handling. The project is designed to scale and handle massive datasets, making it particularly suited for cloud environments like Amazon EMR. By using a combination of tokenization and deep learning-based Word2Vec embeddings, this system provides meaningful word embeddings and relationships between tokens, which are valuable for various natural language processing tasks.
+
+
+This project is implemented using **Java 11** to ensure compatibility with modern cloud environments and uses key technologies such as Hadoop 3.3.6 and Deeplearning4j for Word2Vec embeddings.
+
+
+### Key Files:
+- **TokenisationMapper.scala**: Tokenizes input text into individual tokens and emits.
+- **TokenisationReducer.scala**: Aggregates the count of each token across the dataset and is responisible for the next step of generating vector embeddings.
+- **Word2VecMapper.scala**: Trains the Word2Vec model on the input tokens and outputs the token embeddings.
+- **Word2VecReducer.scala**: Handles the embeddings and processes any further aggregation or reduction tasks.
+- **LLMEncoderDriver.scala**: The driver class orchestrating the MapReduce job flow.
+
+### Build Instructions
+This project uses **SBT** (Scala Build Tool) to manage dependencies and compile the project.
+
+**build.sbt** includes the following dependencies:
+- `org.apache.hadoop`: For MapReduce and Hadoop Common libraries.
+- `org.deeplearning4j`: For the Word2Vec implementation.
+- `jtokkit`: For tokenization.
+- Logging libraries like `logback` and `slf4j`.
+
+## Running the Project
+
+### Prerequisites:
+- **Java Version**: Ensure that **Java 11** is installed and set as your default JDK.
+- **Scala Version**: The project is built with **Scala 2.13.8**.
+- **Hadoop Version**: This project is tested on **Hadoop 3.3.6**.
+- **SBT Version**: Use **SBT 1.x** to build and package the project.
+- **Deeplearning4j**: The project uses **Deeplearning4j 1.0.0-M2.1** for Word2Vec embeddings.
+
+### How to Run Locally in IntelliJ:
+
+1. **Clone the Project**: 
+   - Open IntelliJ IDEA and clone the project into your workspace. Or create a new project in intellij and add the key files provided above under src/main/scala and the Build.sbt and Plugin.sbt under the project folder.
+
+2. **Build the Project**:
+   - Make sure that `build.sbt` is properly configured with all dependencies.
+   - Run `sbt clean assembly` to compile and build the project into a JAR file.
+
+3. **Running the Code in IntelliJ**:
+   - Open the `LLMEncoderDriver.scala` file.
+   - Provide the required input arguments to the `main` method. Example:
+     ```
+     runMain com.thanu.llm.LLMEncoderDriver <input file path> <output directory>
+     ```
+   - Ensure the dataset is in the appropriate directory (e.g., Project Gutenberg texts).
+   - Select `Run` or `Debug` from IntelliJ's menu to start the process.
+
+4. **Running with Hadoop Locally**:
+   - Ensure that Hadoop is configured and running.
+   - Run the following command:
+     ```
+     hadoop jar target/scala-2.13/CloudLLMProject-assembly.jar com.thanu.llm.LLMEncoderDriver <input-path> <output-path-1> <output-path-2>
+     ```
+   - The `<input-path>` is the path to your input text file, and the `<output-path-1>` and `<output-path-2>` are the directories where output files will be written.
+
+5. **Running on Amazon EMR**:
+   - Upload the compiled JAR file and dataset files to **S3**.
+   - Create an EMR cluster with **Hadoop** and **Scala** pre-installed.
+   - Add a step to the EMR cluster using the following command format:
+     ```
+     hadoop jar s3://<your-bucket-name>/CloudLLMProject-assembly.jar com.thanu.llm.LLMEncoderDriver s3://<your-bucket-name>/<input-path> s3://<your-bucket-name>/<output-path-1> s3://<your-bucket-name>/<output-path-2>
+     ```
+   - Monitor the cluster for job completion and download the results from S3.
+
+### Output Explanation:
+- The output will be in **CSV** or **YAML** format containing the token embeddings and semantically similar tokens.
+- After execution, the output directory will contain the files with word embeddings and similarity results.
+
