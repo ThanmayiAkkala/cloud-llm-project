@@ -34,7 +34,7 @@ lazy val root = (project in file("."))
 //    // Merge strategy to handle deduplication errors
 //    assemblyMergeStrategy in assembly := {
 //      case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-//      case PathList("org", "slf4j", _*)  => MergeStrategy.first
+//      case PathList("org", "slf4j", _*)  => MergeStrategy
 
 
 //    }
