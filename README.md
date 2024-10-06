@@ -63,9 +63,11 @@ This project uses **SBT** (Scala Build Tool) to manage dependencies and compile 
 
    - Ensure the dataset is in the appropriate directory (e.g., Project Gutenberg texts).
    - Select `Run` or `Debug` from IntelliJ's menu to start the process.
+   - After running, to check if it has successfully implemented, please check the output directory for the files even if warnings are shown.
 
 4. **Running with Hadoop Locally**:
    - Ensure that Hadoop is configured and running.
+   - Also ensure you loaded the plugins.sbt for the assembly jar to work.
    - Run the following command:
      ```
      hadoop jar target/scala-2.13/CloudLLMProject-assembly.jar com.thanu.llm.LLMEncoderDriver <input-path> <output-path-1> <output-path-2>
