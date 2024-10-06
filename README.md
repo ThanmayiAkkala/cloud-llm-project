@@ -87,6 +87,16 @@ The wordsvec Mapper and reducer gives the token and its corresponding embeddings
 ![image](https://github.com/user-attachments/assets/5a2ebc7b-40ec-49c8-979a-b0f9c3520dd5)
 ![image](https://github.com/user-attachments/assets/aba4da8e-37e6-4162-a3c0-3dce78397cbb)
 
+After deploying on emr when the status is complete:
+
+![image](https://github.com/user-attachments/assets/3f01cf0d-7fac-474d-a262-bc53f3c46526)
+
+the output folders that are passed as arguments for output_1 and output_2 are created and the corresponding output files:
+
+![image](https://github.com/user-attachments/assets/ff30a583-39b1-49b3-85d7-6b1541d8078d)
+
+![image](https://github.com/user-attachments/assets/a9882073-f6c0-4158-ae20-2547dda6a0da)
+
 
 
 
