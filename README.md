@@ -2,7 +2,11 @@
 
 **Name**: Thanmayi Akkala  
 **Email**: takkal2@uic.edu
+
 **UIN**: 650556907
+
+**Video Link**: https://youtu.be/wxtleucxmeU
+(Would suggest to watch in 1.5x or even 2x :-) )
 
 ## Overview
 The LLM Encoder Project is designed to process large-scale text corpora using a parallel distributed system architecture. This project utilizes Hadoop's MapReduce framework to handle data tokenization, word frequency calculation, and Word2Vec-based token embedding generation. The primary goal of the system is to generate token embeddings that capture the semantic meaning of words in the corpus and identify tokens that are semantically similar using cosine similarity.
@@ -59,9 +63,11 @@ This project uses **SBT** (Scala Build Tool) to manage dependencies and compile 
 
    - Ensure the dataset is in the appropriate directory (e.g., Project Gutenberg texts).
    - Select `Run` or `Debug` from IntelliJ's menu to start the process.
+   - After running, to check if it has successfully implemented, please check the output directory for the files even if warnings are shown.
 
 4. **Running with Hadoop Locally**:
    - Ensure that Hadoop is configured and running.
+   - Also ensure you loaded the plugins.sbt for the assembly jar to work.
    - Run the following command:
      ```
      hadoop jar target/scala-2.13/CloudLLMProject-assembly.jar com.thanu.llm.LLMEncoderDriver <input-path> <output-path-1> <output-path-2>
@@ -76,7 +82,10 @@ This project uses **SBT** (Scala Build Tool) to manage dependencies and compile 
      hadoop jar s3://<your-bucket-name>/CloudLLMProject-assembly.jar com.thanu.llm.LLMEncoderDriver s3://<your-bucket-name>/<input-path> s3://<your-bucket-name>/<output-path-1> s3://<your-bucket-name>/<output-path-2>
      ```
    - Monitor the cluster for job completion and download the results from S3.
-
+### Scala Unit/Integration Tests:
+The tests are under in src/tests/scala. These can be run using sbt test at once or sbt.
+It can be run using the scala test or by passing the files individually like: sbt "testOnly *Word2VecMapperTest"
+More detailed in this docs: https://docs.google.com/document/d/1CsSLDK4hZqzr5Y7--g8d4cAiiCtesisuCnXA9J8Bxn8/edit?usp=sharing
 ### Output Explanation:
 The first mapper reducer gives the tokens and the number of occurences.
 ![image](https://github.com/user-attachments/assets/77be1062-127d-4b9a-83df-e7dc667a091d)
