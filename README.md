@@ -51,8 +51,12 @@ This project uses **SBT** (Scala Build Tool) to manage dependencies and compile 
    - Open the `LLMEncoderDriver.scala` file.
    - Provide the required input arguments to the `main` method. Example:
      ```
-     runMain com.thanu.llm.LLMEncoderDriver <input file path> <output directory>
+     sbt run com.thanu.llm.LLMEncoderDriver <input file path> <output directory> <output_directory_2>
      ```
+     Example:
+
+![image](https://github.com/user-attachments/assets/d0376e38-8855-40b1-816e-fb8384d61e51)
+
    - Ensure the dataset is in the appropriate directory (e.g., Project Gutenberg texts).
    - Select `Run` or `Debug` from IntelliJ's menu to start the process.
 
@@ -74,6 +78,16 @@ This project uses **SBT** (Scala Build Tool) to manage dependencies and compile 
    - Monitor the cluster for job completion and download the results from S3.
 
 ### Output Explanation:
-- The output will be in **CSV** or **YAML** format containing the token embeddings and semantically similar tokens.
-- After execution, the output directory will contain the files with word embeddings and similarity results.
+The first mapper reducer gives the tokens and the number of occurences.
+![image](https://github.com/user-attachments/assets/77be1062-127d-4b9a-83df-e7dc667a091d)
+![image](https://github.com/user-attachments/assets/dc9753e5-f7a5-45e8-86a9-e454904f6825)
+
+The wordsvec Mapper and reducer gives the token and its corresponding embeddings and the similar tokens down in the output file
+
+![image](https://github.com/user-attachments/assets/5a2ebc7b-40ec-49c8-979a-b0f9c3520dd5)
+![image](https://github.com/user-attachments/assets/aba4da8e-37e6-4162-a3c0-3dce78397cbb)
+
+
+
+
 
