@@ -83,7 +83,8 @@ This project uses **SBT** (Scala Build Tool) to manage dependencies and compile 
      ```
    - Monitor the cluster for job completion and download the results from S3.
 ### Scala Unit/Integration Tests:
-The tests are under in src/tests/scala. These can be run using sbt test at once or sbt 
+The tests are under in src/tests/scala. These can be run using sbt test at once or sbt.
+It can be run using the scala test or by passing the files individually like: sbt "testOnly *Word2VecMapperTest"
 More detailed in this docs: https://docs.google.com/document/d/1CsSLDK4hZqzr5Y7--g8d4cAiiCtesisuCnXA9J8Bxn8/edit?usp=sharing
 ### Output Explanation:
 The first mapper reducer gives the tokens and the number of occurences.
