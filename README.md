@@ -6,6 +6,7 @@
 **UIN**: 650556907
 
 **Video Link**: https://youtu.be/wxtleucxmeU
+(Would suggest to watch in 1.5x or even 2x :-) )
 
 ## Overview
 The LLM Encoder Project is designed to process large-scale text corpora using a parallel distributed system architecture. This project utilizes Hadoop's MapReduce framework to handle data tokenization, word frequency calculation, and Word2Vec-based token embedding generation. The primary goal of the system is to generate token embeddings that capture the semantic meaning of words in the corpus and identify tokens that are semantically similar using cosine similarity.
