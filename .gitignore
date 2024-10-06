@@ -1,0 +1,36 @@
+# SBT-specific files
+target/
+project/target/
+project/project/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Logs
+*.log
+*.log.*
+
+# JVM crash logs
+hs_err_pid*
+
+src/main/scala/com/thanu/llm/TokenCountMapper.scala
+
+
+
+# sbt dependencies
+lib_managed/
+src_managed/
+dist/
+bin/
+
+# sbt specific
+.metals/
+.cache/
+.bloop/
+.idea_modules/
+
+# Hadoop Logs
+hadoop-logs/
