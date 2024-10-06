@@ -12,7 +12,14 @@ libraryDependencies ++= Seq(
   "com.knuddels" % "jtokkit" % "1.1.0",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "org.slf4j" % "slf4j-api" % "1.7.30",
-  "com.typesafe" % "config" % "1.4.3"
+  "com.typesafe" % "config" % "1.4.3",
+  "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+  "org.scalamock" %% "scalamock" % "5.2.0" % Test,
+  "org.mockito" %% "mockito-scala" % "1.17.7" % Test,
+    "org.scalatest" %% "scalatest" % "3.2.9" % Test,
+    "org.mockito" % "mockito-core" % "4.0.0" % Test,
+    "org.scalatestplus" %% "mockito-3-4" % "3.2.9.0" % Test
+
 )
 lazy val root = (project in file("."))
   .settings(
