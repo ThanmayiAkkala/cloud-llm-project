@@ -12,7 +12,7 @@ import scala.jdk.CollectionConverters._
 
 class Word2VecMapper extends Mapper[LongWritable, Text, Text, Text] {
 
-  // Initialize logger
+
   val logger: Logger = LoggerFactory.getLogger(classOf[Word2VecMapper])
 
   // Use HashSet to filter out duplicate tokens

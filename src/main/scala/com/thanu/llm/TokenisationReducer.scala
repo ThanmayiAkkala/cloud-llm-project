@@ -7,7 +7,7 @@ import scala.collection.JavaConverters._
 
 class TokenisationReducer extends Reducer[Text, Text, Text, IntWritable] {
 
-  // Initialize logger
+
   val logger: Logger = LoggerFactory.getLogger(classOf[TokenisationReducer])
 
   override def setup(context: Reducer[Text, Text, Text, IntWritable]#Context): Unit = {

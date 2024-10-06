@@ -29,7 +29,7 @@ class TokenisationMapper extends Mapper[LongWritable, Text, Text, Text] {
     encodedTokens.toArray.foreach { token =>
       val tokenStr = token.toString // Convert token (int) to string
       logger.debug(s"Token: $tokenStr generated from sentence: $sentence")
-      context.write(new Text(tokenStr), new Text(sentence)) // Emit token as key and original sentence as value
+      context.write(new Text(tokenStr), new Text(sentence))
     }
   }
 

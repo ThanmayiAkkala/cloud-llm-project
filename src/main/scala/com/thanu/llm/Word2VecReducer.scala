@@ -7,7 +7,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class Word2VecReducer extends Reducer[Text, Text, Text, Text] {
 
-  // Initialize logger
+
   val logger: Logger = LoggerFactory.getLogger(classOf[Word2VecReducer])
 
   override def setup(context: Reducer[Text, Text, Text, Text]#Context): Unit = {
