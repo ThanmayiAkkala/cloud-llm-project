@@ -34,3 +34,7 @@ bin/
 
 # Hadoop Logs
 hadoop-logs/
+
+# .idea
+
+.idea/
