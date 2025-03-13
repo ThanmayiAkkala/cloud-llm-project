@@ -1,4 +1,4 @@
-# CS441 Homework1
+# LLM from Scratch
 
 **Name**: Thanmayi Akkala  
 **Email**: takkal2@uic.edu
