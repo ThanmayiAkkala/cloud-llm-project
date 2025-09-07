@@ -1,9 +1,5 @@
 # LLM from Scratch
 
-**Name**: Thanmayi Akkala  
-**Email**: takkal2@uic.edu
-
-**UIN**: 650556907
 
 **Video Link**: https://youtu.be/wxtleucxmeU
 (Would suggest to watch in 1.5x or even 2x :-) )
